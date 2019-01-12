@@ -2,13 +2,13 @@
     browserSync = require('browser-sync'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
-    uglify = require('gulp-uglify'),
+    //uglify = require('gulp-uglify'),
     rigger = require('gulp-rigger'),
     cssnano = require('gulp-cssnano'),
     less = require('gulp-less'),
     rimraf = require('rimraf'),
-    imagemin = require('gulp-imagemin');
-
+    imagemin = require('gulp-imagemin'),
+    babel = require("gulp-babel");
 
 var path = {
     build: { // Куда складывать готовые файлы после сборки
@@ -46,7 +46,8 @@ gulp.task('html:build', function () {
 gulp.task('js:build', function () {
     gulp.src(path.src.js) // Выберем файлы по нужному пути
         .pipe(rigger()) // Прогоним через rigger
-        .pipe(uglify()) // Сожмем js
+        //.pipe(uglify()) // Сожмем js
+        .pipe(babel())
         .pipe(gulp.dest(path.build.js)); // Переместим готовый файл в build
 });
 

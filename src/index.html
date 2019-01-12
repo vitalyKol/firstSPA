@@ -1,19 +1,59 @@
-//= templates/head.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta name="author" content="Vitaly">
+    <meta name="keywords" content="schedule">
+    <meta name="description" content="Schedule for the restaurant manager">
+
+    <meta name="vievport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Favicons for all devices -->
+    <link rel="apple-touch-icon" sizes="57x57" href="i/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="i/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="i/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="i/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="i/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="i/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="i/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="i/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="i/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="i/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="i/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="i/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="i/favicons/favicon-16x16.png" sizes="16x16">
+
+    <title>Schedule</title>
+
+</head>
+
+<body>
 
 
-<div class="container">
-    <div class="row">
-
-        <div class="col-xs-12">
-            <div class="page-header">
-                <h1><i class="fa fa-cog"></i> let's start</h1>
-            </div>
-        </div>
-
-    </div><!-- /.row -->
-</div><!-- /.container -->
+<main class="main">
+	<section class="js-staff">
+		<h2>Staff</h3>
+		<h3 class='title title_size_m'>Сотрудники ресторана</h3>
+		<ol id='js-staff-ol'>
+		</ol>
+		<button class='button' id='js-staff-but'>Добавить сотрудника</button>
+	</section>
+</main>
 
 
 
 <!-- JS section -->
-//= templates/end.html
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
