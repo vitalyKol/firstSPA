@@ -11,3 +11,26 @@ Table of Content
 
 /* 1. Slider
 ===========================*/
+span:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+/* #tree span.hover, для приоритета перед :hover также добавлен подселектор */
+
+li.hover span,
+li.hover span:hover {
+	border-top: 2px solid green;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+li.avatar {
+  padding: 1px;
+  border: 1px dotted black;
+  background: white;
+  cursor: pointer;
+  opacity: 0.6;
+ // filter: progid: DXImageTransform.Microsoft.Alpha(opacity=60);
+  /* IE opacity */
+}

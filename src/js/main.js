@@ -1,3 +1,9 @@
+//= DragAvatar.js
+//= DragZone.js
+//= DropTarget.js
+//= DragManager.js
+//= DragDrop.js
+
 let sectionStaff = document.getElementById('js-staff-ol');
 let buttonStaff = document.getElementById('js-staff-but');
 buttonStaff.addEventListener('click', addWorker);
@@ -9,6 +15,7 @@ function addWorker(){
 	let butDelete = document.createElement('button');
 
 	span.textContent = 'New worker';
+	span.classList.add('js-dragWorker');
 	butEdit.classList.add('staff__button');
 	butEdit.classList.add('staff__button_edit');
 	butEdit.addEventListener('click', editWorker);
@@ -58,6 +65,8 @@ function editWorker(){
 	li.appendChild(input);
 	li.appendChild(butSave);
 	li.appendChild(butCancel);
+
+	input.focus();
 }
 
 function editWorkerSave(){
@@ -86,4 +95,54 @@ function editWorkerCancel(){
 
 function deleteWorker(){
 	this.parentNode.parentNode.removeChild(this.parentNode);
+}
+
+
+let list = document.getElementsByClassName('js-drag-list')[0];
+ new DragZone(list);
+ new DropTarget(list);
+//DragDrop();
+
+function getCoords(elem) { 
+  var box = elem.getBoundingClientRect();
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+  };
+}
+
+function getCoords(elem) {
+  var box = elem.getBoundingClientRect();
+
+  var body = document.body;
+  var docElem = document.documentElement;
+
+  var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+  var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+
+  var clientTop = docElem.clientTop || body.clientTop || 0;
+  var clientLeft = docElem.clientLeft || body.clientLeft || 0;
+
+  var top = box.top + scrollTop - clientTop;
+  var left = box.left + scrollLeft - clientLeft;
+
+  return {
+    top: Math.round(top),
+    left: Math.round(left)
+  };
+}
+
+function getElementUnderClientXY(elem, clientX, clientY) {
+  var display = elem.style.display || '';
+  elem.style.display = 'none';
+
+  var target = document.elementFromPoint(clientX, clientY);
+
+  elem.style.display = display;
+
+  if (!target || target == document) { 
+    target = document.body;
+  }
+
+  return target;
 }
