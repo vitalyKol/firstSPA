@@ -1,6 +1,8 @@
 function DragZone(elem){
 	elem.dragZone = this;
 	this._elem = elem;
+
+	
 }
 
 DragZone.prototype._makeAvatar = function(event) {

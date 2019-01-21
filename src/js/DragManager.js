@@ -36,10 +36,8 @@ let dragManager = new function(){
 		}
 
 		avatar.onDragMove(e);
+		dropTarget = findDropTarget(e);
 
-		let newDropTarget = findDropTarget(e);
-
-		dropTarget = newDropTarget;
 		dropTarget && dropTarget.onDragMove(avatar, e);
 
 		return false; 
@@ -85,7 +83,7 @@ let dragManager = new function(){
 		return elem.dropTarget;
 	}
 
-	document.ondragstart = function(){return false;}
+	document.ondragstart = function(){return false;};
 
 	document.addEventListener('mousemove', onMouseMove);
 	document.addEventListener('mouseup', onMouseUp);

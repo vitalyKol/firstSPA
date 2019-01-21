@@ -6,6 +6,7 @@ function DropTarget(elem){
 }
 
 DropTarget.prototype._getTargetElem = function(avatar, event){
+
 	let target = avatar.getTargetElem();
 	let li = target.closest('li');
 
@@ -40,10 +41,10 @@ DropTarget.prototype.onDragMove = function(avatar, event) {
 
 
 DropTarget.prototype.onDragEnd = function(avatar, event) {
-  this._hideHoverIndication(avatar);
-  avatar.onDraEnd();
-  let info = avatar.getDragInfo();
-  this._targetElem.parentNode.insertBefore(info.dragZoneElem.parentNode, this._targetElem);
-
+	this._hideHoverIndication(avatar);
+	avatar.onDraEnd();
+	let info = avatar.getDragInfo();
+	this._targetElem.parentNode.insertBefore(info.dragZoneElem.parentNode, this._targetElem);
+	this._targetElem = null;
 };
 
