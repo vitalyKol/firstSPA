@@ -40,12 +40,39 @@
 
 
 <main class="main">
-	<section class="js-staff">
-		<h2>Staff</h3>
-		<h3 class='title title_size_m'>Сотрудники ресторана</h3>
+	<section id='js-staff' class="js-staff section">
+		<h2 class='title title_size_m'>Сотрудники ресторана</h3>
 		<ol id='js-staff-ol' class='js-drag-list'>
 		</ol>
 		<button class='button' id='js-staff-but'>Добавить сотрудника</button>
+	</section>
+
+	<section id='js-calendar' class="section">
+		<form id='js-calendar__month-title'>
+			<span>Дата: </span>
+			<select id='js-calendar__list-month'>
+				<option value="0">Январь</option>
+				<option value="1">Февраль</option>
+				<option value="2">Март</option>
+				<option value="3">Апрель</option>
+				<option value="4">Май</option>
+				<option value="5">Июнь</option>
+				<option value="6">Июль</option>
+				<option value="7">Август</option>
+				<option value="8">Сентябрь</option>
+				<option value="9">Октябрь</option>
+				<option value="10">Ноябрь</option>
+				<option value="11">Декабрь</option>
+			</select>
+			<label id='js-calendar__last-year'><input type="radio" value='2018' name='calendar__years' class='js-calendar__years'>2018</label>
+			<label id='js-calendar__now-year'><input type="radio" value='2019' name='calendar__years' class='js-calendar__years'>2019</label>
+			<label id='js-calendar__next-year'><input type="radio" value='2020' name='calendar__years' class='js-calendar__years'>2020</label>
+			<button id='js-calendar__submit-title'>Поменять месяц</button>
+		</form>
+
+		<div id="js-calendar__calendar-table">
+		</div>
+
 	</section>
 </main>
 

@@ -41,6 +41,20 @@ function Workers(ol, button){
 		if(textSpan != '' && textSpan != 'New worker'){
 			input.value = textSpan;
 		}
+		//if press Enter then to save
+		input.addEventListener('keydown', function(event){
+			if(event.keyCode == 13){
+				console.log('ent');
+				editWorkerSave();
+			}
+		})
+		//if press Esc then to cancel
+		input.addEventListener('keydown', function(event){
+			if(event.keyCode == 27){
+				console.log('can');
+				editWorkerCancel();
+			}
+		})
 
 		butSave.addEventListener('click', editWorkerSave);
 		butCancel.addEventListener('click', editWorkerCancel);
@@ -66,7 +80,7 @@ function Workers(ol, button){
 	}
 
 	function editWorkerSave(){
-		let li = this.parentNode;
+		let li = document.querySelector('.js-staff__li_edit');
 		let input = li.querySelector('input');
 		let span = li.firstElementChild;
 		

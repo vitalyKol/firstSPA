@@ -3,6 +3,8 @@
 //= DropTarget.js
 //= DragManager.js
 //= Workers.js
+//= Calendar.js
+
 document.onselectstart = function(){return false;};
 
 
@@ -14,3 +16,7 @@ let list = document.getElementsByClassName('js-drag-list')[0];
  new DragZone(list);
  new DropTarget(list);
 
+let placeCalendar = document.getElementById('js-calendar__calendar-table');
+let monthTitle = document.getElementById('js-calendar__month-title');
+let buttonMonthTitle = document.getElementById('js-calendar__submit-title');
+let calendar = new Calendar(placeCalendar, monthTitle, buttonMonthTitle);
