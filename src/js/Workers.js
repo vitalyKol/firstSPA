@@ -22,14 +22,14 @@ function Workers(ol, button){
 		butDelete.textContent = 'Del';
 
 		li.appendChild(span);
+		let butPositions = new Positions(li);
 		li.appendChild(butEdit);
 		li.appendChild(butDelete);
-
+		
 		sectionStaff.appendChild(li);
 	}
 
 	function editWorker(){
-		console.log(1);
 		let li = this.parentNode;
 		let input = document.createElement('input');
 		let butSave = document.createElement('button');
@@ -69,9 +69,9 @@ function Workers(ol, button){
 		}
 
 		li.classList.add('js-staff__li_edit');
-		li.firstElementChild.style.display = 'none';
-		li.children[1].style.display = 'none';
-		li.lastElementChild.style.display = 'none';
+		for(let i = 0; i < li.children.length; i++){
+			li.children[i].style.display = 'none';
+		}
 		li.appendChild(input);
 		li.appendChild(butSave);
 		li.appendChild(butCancel);
@@ -92,18 +92,20 @@ function Workers(ol, button){
 		let li = document.querySelector('.js-staff__li_edit');
 		let arrChild = li.children;
 
-		for(let i = arrChild.length-1; i >= 0; i--){
-			if(i < 3){
-				arrChild[i].removeAttribute('style');
-			}else{
-				arrChild[i].parentNode.removeChild(arrChild[i]);
-			}
+		console.log(arrChild);
+		for(let i = 0; i < arrChild.length-3; i++){
+			arrChild[i].removeAttribute('style');
+		}
+		let lengthArr = arrChild.length-3;
+		for(let i = arrChild.length-1; i >= lengthArr; i--){
+			arrChild[i].parentNode.removeChild(arrChild[i]);
 		}
 
 		li.classList.remove('js-staff__li_edit');
 	}
 
 	function deleteWorker(){
-		this.parentNode.parentNode.removeChild(this.parentNode);
+		let result = confirm('Удалить ' + this.parentNode.firstElementChild.innerHTML + '?');
+		if(result) this.parentNode.parentNode.removeChild(this.parentNode);
 	}
 }

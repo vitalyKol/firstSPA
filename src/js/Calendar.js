@@ -5,8 +5,8 @@ class Calendar{
 		this._buttonInfo = buttonInfo;
 		this._dateObjInfo = {};
 		this._buttonInfo.addEventListener('click',this.getInfoDate.bind(this, this._dateInfo));
-		//this.getInfoDate(this._dateInfo);
 		this.createMonth(this._placeCalendar);
+		this.createYears(this._dateInfo);
 	}
 	createMonth(placeCalendar, year, month){
 		let startDate = new Date();
@@ -23,7 +23,7 @@ class Calendar{
 		date.setDate(0);
 		lastDate = date.getDate();
 		lastDayWeek = date.getDay();
-		countRow = Math.ceil((firstDayWeek + lastDate)/7);
+		countRow = Math.ceil((lastDate + firstDayWeek - 1)/7);
 		countDays = 1; 
 		date = new Date();
 
@@ -31,7 +31,6 @@ class Calendar{
 		table.setAttribute('id', 'js-calendar__table-month');
 
 		for(let i = 0; i < countRow; i++){
-
 			let tr = document.createElement('tr');
 			
 			for(let j = 1; j <= 7; j++){
@@ -39,12 +38,10 @@ class Calendar{
 				let td = document.createElement('td');
 				
 				if(i == 0 && j < firstDayWeek){
-					let day = new Date(date.getFullYear(),date.getMonth(),1-(firstDayWeek-j));
-					td.innerHTML = day.getDate();
+					td.innerHTML = 'x';
 					td.classList.add('calendar__ceil_gray');
 				} else if(countDays > lastDate){
-					let day = new Date(date.getFullYear(),date.getMonth(),lastDate+(j-lastDayWeek));
-					td.innerHTML = day.getDate();
+					td.innerHTML = 'x';
 					td.classList.add('calendar__ceil_gray');
 				} else{
 					if(countDays <= lastDate){
@@ -77,12 +74,26 @@ class Calendar{
 		   year = listYear[i].value;
 		  }
 		}
+
 		let objDateInfo = {
 			'year': year,
 			'month': month
 		};
 		let table = document.getElementById('js-calendar__table-month');
+		
 		table.parentNode.removeChild(table);
 		this.createMonth(this._placeCalendar,objDateInfo['year'],objDateInfo['month']);
+	}
+
+	createYears(place){
+		let listLabel = place.getElementsByClassName('js-calendar__label-year');
+		let listInput = place.getElementsByClassName('js-calendar__years');
+
+		let date = new Date();
+		let year = date.getFullYear();
+		for(let i = 0, j = -1; i < 3; i++, j++){
+			listLabel[i].appendChild(document.createTextNode(year+j));
+			listInput[i].value = year+j;
+		}
 	}
 }

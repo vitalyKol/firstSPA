@@ -1,12 +1,13 @@
+//= libs.js
 //= DragAvatar.js
 //= DragZone.js
 //= DropTarget.js
 //= DragManager.js
 //= Workers.js
 //= Calendar.js
+//= Positions.js
 
 document.onselectstart = function(){return false;};
-
 
 let sectionStaff = document.getElementById('js-staff-ol');
 let buttonStaff = document.getElementById('js-staff-but');
