@@ -50,10 +50,7 @@ class Workers{
 		localStorage.setItem('workersObj', json);
 		localStorage.setItem('idWorkers', this.idWorkers);
 
-console.log('Add')
-json = localStorage.getItem('workersObj');
-this.workersObj = JSON.parse(json);
-console.log(this.workersObj);	
+
 	}
 
 	editWorker(elem, self){
@@ -134,11 +131,6 @@ console.log(this.workersObj);
 		this.workersObj[idKey] = li.outerHTML;
 		var json = JSON.stringify(this.workersObj);
 		localStorage.setItem('workersObj', json);
-
-console.log('EDIT')
-json = localStorage.getItem('workersObj');
-this.workersObj = JSON.parse(json);
-console.log(this.workersObj);		
 	}
 
 	deleteWorker(elem){
@@ -150,16 +142,9 @@ console.log(this.workersObj);
 			let idKey = elem.parentNode.dataset.idKey;
 			var json = localStorage.getItem('workersObj');
 			this.workersObj = JSON.parse(json);
-console.log(this.workersObj);
-console.log(idKey);		
-			console.log(delete this.workersObj[idKey]);
+			delete this.workersObj[idKey];
 			json = JSON.stringify(this.workersObj);
 			localStorage.setItem('workersObj', json);
-
-console.log('DEL')
-json = localStorage.getItem('workersObj');
-this.workersObj = JSON.parse(json);
-console.log(this.workersObj);
 		}
 	}
 
@@ -178,8 +163,5 @@ console.log(this.workersObj);
 			strObj += this.workersObj[key];
 		}
 		this.sectionStaff.innerHTML = strObj;
-
-console.log('START')
-console.log(this.workersObj);	
 	}
 }

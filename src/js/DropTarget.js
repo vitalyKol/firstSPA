@@ -44,7 +44,24 @@ DropTarget.prototype.onDragEnd = function(avatar, event) {
 	this._hideHoverIndication(avatar);
 	avatar.onDraEnd();
 	let info = avatar.getDragInfo();
-	this._targetElem.parentNode.insertBefore(info.dragZoneElem.parentNode, this._targetElem);
+
+	let ol = this._targetElem.parentNode;
+	ol.insertBefore(info.dragZoneElem.parentNode, this._targetElem);
 	this._targetElem = null;
+
+	//work with localStorage JSON
+	let workersObj = {};
+	let strObj = '';
+	for(let i = 0; i < ol.children.length; i++){
+		ol.children[i].dataset.idKey = i+1;
+		workersObj[i+1] = ol.children[i].outerHTML;
+	}
+	let json = JSON.stringify(workersObj);
+	localStorage.setItem('workersObj', json);
+
+console.log('MOVE')
+json = localStorage.getItem('workersObj');
+workersObj = JSON.parse(json);
+console.log(workersObj);	
 };
 
