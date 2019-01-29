@@ -52,12 +52,16 @@ DropTarget.prototype.onDragEnd = function(avatar, event) {
 	//work with localStorage JSON
 	let workersObj = {};
 	let strObj = '';
+	let count = 0;
 	for(let i = 0; i < ol.children.length; i++){
 		ol.children[i].dataset.idKey = i+1;
 		workersObj[i+1] = ol.children[i].outerHTML;
+		count = i+1;
 	}
+
 	let json = JSON.stringify(workersObj);
 	localStorage.setItem('workersObj', json);
+	localStorage.setItem('idWorkers', count);
 
 console.log('MOVE')
 json = localStorage.getItem('workersObj');

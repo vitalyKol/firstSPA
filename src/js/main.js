@@ -6,7 +6,7 @@
 //= Workers.js
 
 //= Calendar.js
-//= Positions.js
+
 
 document.onselectstart = function(){return false;};
 

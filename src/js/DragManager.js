@@ -23,7 +23,7 @@ let dragManager = new function(){
 		if(!dragZone) return;
 
 		if(!avatar){
-			if(Math.abs(e.pageX - downX) < 3 && Math.abs(e.pageY - downY) < 3){
+			if(Math.abs(e.pageX - downX) < 3 && Math.abs(e.pageY - downY) < 3 || !e.target.closest('.js-dragWorker')){
 				return;
 			}
 
