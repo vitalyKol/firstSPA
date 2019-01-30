@@ -32,17 +32,15 @@ class Workers{
 		let butDelete = document.createElement('button');
 		let buttonPlus = document.createElement('button');
 		
-		span.textContent = 'New worker';
+		span.textContent = 'Новый сотрудник';
 		span.classList.add('js-dragWorker');
-		buttonPlus.innerHTML = '+';
+		span.classList.add('list-workers__worker');
 		buttonPlus.classList.add('staff__button');
 		buttonPlus.classList.add('staff__button_plus');
 		butEdit.classList.add('staff__button');
 		butEdit.classList.add('staff__button_edit');
 		butDelete.classList.add('staff__button');
 		butDelete.classList.add('staff__button_delete');
-		butEdit.textContent = 'Edit';
-		butDelete.textContent = 'Del';
 
 		li.appendChild(span);
 		li.appendChild(buttonPlus);
@@ -76,7 +74,8 @@ console.log(this.workersObj);
 
 		//check for custom text
 		input.setAttribute('type', 'text');
-		if(textSpan != '' && textSpan != 'New worker'){
+		input.classList.add('staff__input_edit');
+		if(textSpan != '' && textSpan != 'Новый сотрудник'){
 			input.value = textSpan;
 		}
 		//if press Enter then to save
@@ -95,8 +94,12 @@ console.log(this.workersObj);
 		butSave.addEventListener('click', this.editWorkerSave.bind(this));
 		butCancel.addEventListener('click', this.editWorkerCancel.bind(this));
 
-		butSave.textContent = 'Save';
-		butCancel.textContent = 'Cancel';
+		butSave.classList.add('staff__button');
+		butSave.classList.add('staff__button_save');
+		butCancel.classList.add('staff__button');
+		butCancel.classList.add('staff__button_cancel');
+		// butSave.textContent = 'Save';
+		// butCancel.textContent = 'Cancel';
 
 		//check for the existence of an open edit field
 		let anotherli = document.querySelector('.js-staff__li_edit');
@@ -141,10 +144,24 @@ console.log(this.workersObj);
 		li.classList.remove('js-staff__li_edit');
 
 		//work with localStorage JSON
-		let idKey = li.dataset.idKey;
-		this.workersObj[idKey] = li.outerHTML;
-		var json = JSON.stringify(this.workersObj);
+		let ol = li.parentNode;
+		let workersObj = {};
+		let strObj = '';
+		let count = 0;
+		for(let i = 0; i < ol.children.length; i++){
+			ol.children[i].dataset.idKey = i+1;
+			workersObj[i+1] = ol.children[i].outerHTML;
+			count = i+1;
+		}
+
+		let json = JSON.stringify(workersObj);
 		localStorage.setItem('workersObj', json);
+		localStorage.setItem('idWorkers', count);
+
+		// let idKey = li.dataset.idKey;
+		// this.workersObj[idKey] = li.outerHTML;
+		// var json = JSON.stringify(this.workersObj);
+		// localStorage.setItem('workersObj', json);
 
 console.log('EDIT')
 json = localStorage.getItem('workersObj');
@@ -194,7 +211,8 @@ console.log('START')
 console.log(this.workersObj);	
 	}
 
-	addPositions(place, beforeElem){
+	addPositions(place, beforeElem){ //add 'Упр.' 'Мнж.' 'Стж.' 'Мшн.' 'Рсп.' 
+		if (event.target.tagName != 'SPAN') return false;
 		let position = event.target.dataset.position;
 		if( event.target.classList.contains('locked') ) return false;
 		
@@ -258,9 +276,7 @@ console.log(this.workersObj);
 		//work with localStorage JSON
 		let listPositions = place.querySelector('.list-positions');
 		listPositions.classList.add('displayHide'); //hide list
-		beforeElem.innerHTML = '+';
 		let idKey = place.dataset.idKey;
-		console.log(place);
 		this.workersObj[idKey] = place.outerHTML;
 		var json = JSON.stringify(this.workersObj);
 		localStorage.setItem('workersObj', json);
@@ -276,7 +292,7 @@ console.log(this.workersObj);
 		let cover = document.createElement('div');
 		cover.style.cssText = 'position: absolute;\
 								z-index: 9000;\
-								background-color: rgba(0,0,0,0.5);\
+								background-color: rgba(12, 146, 145, 0.3);\
 								width: 100%;\
 								height: 100%;\
 								top:0;\
@@ -293,26 +309,31 @@ console.log(this.workersObj);
 		 	li.appendChild(listPositions);
 		}
 		cover.addEventListener('click', function(){
-			elem.innerHTML = '+';
 			listPositions.classList.add('displayHide');
 			document.body.removeChild(cover);
 		});
-		listPositions.classList.toggle('displayHide');
-		if(!listPositions.classList.contains('displayHide')){
-			elem.innerHTML = '-';
-		}else{
-			elem.innerHTML = '+';
-		}
+
+		//setting new coordinates over an element li
+		let coordsButton = getCoords(li);
+		console.log(coordsButton.top);
+		console.log(elem.offsetHeight);
+		console.log(event.clientY);
+		listPositions.style.top = coordsButton.top - elem.offsetHeight + 'px';
+		listPositions.style.left = coordsButton.left + 'px';
+		listPositions.style.position = 'fixed';
+		listPositions.style.zIndex = 9999;
+
+		listPositions.classList.remove('displayHide');
 		
 	}
 
 	createList(elem){//creates and returns a list of positions
 		let div = document.createElement('div');
-		let arrPositions = ['<span data-position="js-position_dir" class="js-position_dir">Упр</span>', 
-							'<span data-position="js-position_manager" class="js-position_manager">Мендж</span>', 
-							'<span data-position="js-position_car" class="js-position_car">Машина</span>', 
-							'<span data-position="js-position_junior" class="js-position_junior">Стажр</span>', 
-							'<span data-position="js-position_schedule" class="js-position_schedule">Расп</span>'];
+		let arrPositions = ['<span data-position="js-position_dir" class="js-position_dir">Упр.</span>', 
+							'<span data-position="js-position_manager" class="js-position_manager">Мнд.</span>', 
+							'<span data-position="js-position_car" class="js-position_car">Мшн.</span>', 
+							'<span data-position="js-position_junior" class="js-position_junior">Стж.</span>', 
+							'<span data-position="js-position_schedule" class="js-position_schedule">Рсп.</span>'];
 
 		let strDiv = '';
 		arrPositions.forEach((e)=>{
@@ -320,14 +341,7 @@ console.log(this.workersObj);
 			
 		});
 		div.innerHTML += strDiv;
-		let coordsButton = getCoords(elem);
-		
-		div.style.position = 'absolute';
-		div.style.zIndex = 9999;
-		div.style.top = coordsButton.top - elem.offsetHeight + 'px';
-		div.style.left = coordsButton.left + 'px';
 		div.classList.add('displayHide');
-
 		div.classList.add('list-positions');
 		return div;
 	}

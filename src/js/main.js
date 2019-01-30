@@ -24,4 +24,4 @@ let buttonMonthTitle = document.getElementById('js-calendar__submit-title');
 let calendar = new Calendar(placeCalendar, monthTitle, buttonMonthTitle);
 
 
-//localStorage.clear();
+localStorage.clear();

@@ -10,8 +10,10 @@ DropTarget.prototype._getTargetElem = function(avatar, event){
 	let target = avatar.getTargetElem();
 	let li = target.closest('li');
 
-	if (li.tagName != 'LI') {
-	return;
+	if(li){
+		if (li.tagName != 'LI') {
+			return;
+		}
 	}
 
 	return li;

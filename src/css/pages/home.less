@@ -1,12 +1,165 @@
 // out: null
+span:hover {
+  cursor: pointer;
+  color:#F47E14;
+}
+/* #tree span.hover, для приоритета перед :hover также добавлен подселектор */
 
+li.hover span,
+li.hover span:hover {
+  border-top: 1px dotted #F47E14;
+  color: #F47E14;
+  cursor: pointer;
+}
 
+span.avatar{
+	font-weight: bold;
+	color:#fff;
+}
 
+.js-drag-list{
+	//padding:10px;
+}
+
+body{
+	background-color:#E2E2E2; 
+	padding: 0;
+	margin: 0;
+	height: 100%; 
+	widows: 100%;
+	font-family: Verdana, Geneva, sans-serif
+}
 .main{
 	display: flex;
+	height: 100%; 
+	widows: 100%;
+	align-items: stretch;
 }
 .section{
-	padding: 50px;
+	padding: 0px;
+	padding: 0;
+	margin: 0;
+}
+.section_staff{
+	background-color:#01ABAA;
+	color:#fff;
+	text-align: center;
+}
+.section_calendar{
+	//width: 60%
+}
+.title{
+	text-align: center;
+} 
+.title_size_m{
+	padding:2vw 3vw;
+	font-size: 2vw;
+}
+
+.list-workers{
+	text-align: left;
+	font-size: 1vw;
+	padding: 0 0 1vw 3vw;	
+	li{
+		position:relative;
+		margin: 1vw 0;
+		padding-right:10vw;
+	}
+	li:hover{
+		.staff__button{
+			opacity: 1;
+			
+		}
+	}
+
+}
+.list-workers__worker{
+	display: inline-block;
+	//margin-top: -20px;
+	margin-right: 4vw;
+	line-height: 1vw;
+
+}
+
+.staff__button{
+	position: absolute;
+	top: -0.5vw;
+	transition: 0.3s;
+	opacity: 0.1;
+	color: #6D6D77;
+	background-color:#fff;
+	border: none;
+	width: 2vw;
+	height: 2vw;
+	cursor: pointer;
+	margin: 0.1vw;
+	border-radius: 3px;
+	&:hover,&:focus{
+		background-color:#F47E14;
+	}
+}
+.staff__button_plus{
+	right: 6vw;
+	background-image: url(../i/plus-icon-staff.png);
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.staff__button_edit{
+	right: 3.5vw;
+	background-image: url(../i/edit-icon-staff.png);
+	background-size: 70% 70%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.staff__button_delete{
+	right: 1vw;
+	background-image: url(../i/del-icon-staff.png);
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.staff__button_save{
+	right: 3.5vw;
+	background-image: url(../i/save-icon-staff.png);
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.staff__button_cancel{
+	right: 1vw;
+	background-image: url(../i/cancel-icon-staff.png);
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.list-positions{
+	background-color: #fff;
+	padding: 5px 30px;
+	color: #000;
+	border-radius: 3px;
+}
+.staff__input_edit{
+	width: 20vw;
+	height: 1.5vw;
+	background-color:#0C9291;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	padding: 0.2vw 0.5vw;
+}
+.section_staff__button_add-worker{
+	transition: 0.3s;
+	color: #6D6D77;
+	background-color:#fff;
+	border: none;
+	width: 15vw;
+	height: 2vw;
+	cursor: pointer;
+	border-radius: 3px;
+	&:hover,&:focus{
+		background-color:#F47E14;
+	}
 }
 
 .calendar__ceil_gray{
@@ -15,31 +168,4 @@
 
 .displayHide{
 	display: none;
-}
-span:hover {
-  cursor: pointer;
-  font-weight: bold;
-}
-/* #tree span.hover, для приоритета перед :hover также добавлен подселектор */
-
-li.hover span,
-li.hover span:hover {
-	border-top: 2px solid green;
-  color: red;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-li.avatar span {
-  padding: 1px;
-  border: 1px dotted black;
-  background: white;
-  cursor: pointer;
-  opacity: 0.6;
- // filter: progid: DXImageTransform.Microsoft.Alpha(opacity=60);
-  /* IE opacity */
-}
-
-.js-drag-list{
-	//padding:10px;
 }
