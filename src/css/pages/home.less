@@ -16,9 +16,8 @@ span.avatar{
 	font-weight: bold;
 	color:#fff;
 }
-
-.js-drag-list{
-	//padding:10px;
+.displayHide{
+	display: none;
 }
 
 body{
@@ -27,8 +26,8 @@ body{
 	margin: 0;
 	height: 100%; 
 	widows: 100%;
-	font-family: Verdana, Geneva, sans-serif
-}
+	font-family: Verdana, Geneva, sans-serif;
+}	
 .main{
 	display: flex;
 	height: 100%; 
@@ -40,14 +39,6 @@ body{
 	padding: 0;
 	margin: 0;
 }
-.section_staff{
-	background-color:#01ABAA;
-	color:#fff;
-	text-align: center;
-}
-.section_calendar{
-	//width: 60%
-}
 .title{
 	text-align: center;
 } 
@@ -55,7 +46,30 @@ body{
 	padding:2vw 3vw;
 	font-size: 2vw;
 }
+.title_size_s{
+	padding:2vw 1vw;
+	font-size: 1.5vw;
+}
+.button{
+	transition: 0.3s;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+	&:hover{
+		background-color:#F47E14;
+	}
+	&:focus{
+		box-shadow: 0px 0px 2px 2px #F47E14;
+	}
+}
 
+//section staff
+//==================================
+.section_staff{
+	background-color:#01ABAA;
+	color:#fff;
+	text-align: center;
+}
 .list-workers{
 	text-align: left;
 	font-size: 1vw;
@@ -84,19 +98,13 @@ body{
 .staff__button{
 	position: absolute;
 	top: -0.5vw;
-	transition: 0.3s;
 	opacity: 0.1;
 	color: #6D6D77;
 	background-color:#fff;
-	border: none;
 	width: 2vw;
 	height: 2vw;
-	cursor: pointer;
 	margin: 0.1vw;
-	border-radius: 3px;
-	&:hover,&:focus{
-		background-color:#F47E14;
-	}
+	.button;
 }
 .staff__button_plus{
 	right: 6vw;
@@ -149,23 +157,116 @@ body{
 	padding: 0.2vw 0.5vw;
 }
 .section_staff__button_add-worker{
-	transition: 0.3s;
 	color: #6D6D77;
+	font-size: 1vw;
 	background-color:#fff;
-	border: none;
 	width: 15vw;
 	height: 2vw;
-	cursor: pointer;
-	border-radius: 3px;
-	&:hover,&:focus{
-		background-color:#F47E14;
+}
+
+
+
+
+//section calendar
+//==================================
+.section_calendar{
+	flex-grow: 2;
+	text-align: center;
+}
+.section_calendar__str-date{
+	padding: 2vw 0;
+	label input[type="radio"] {
+	  display: none;
+	}
+	label input[type="radio"] ~ span {
+	  position: relative;
+	  display: inline-block;
+	  padding: 0vw 1vw;
+	}
+	label input[type="radio"] ~ span:before {
+	  content: "";
+	  position: absolute;
+	  display: block;
+	  width: 1.5vw;
+	  height: 1.5vw;
+	  background: #fff;
+	  border: 1px solid #ccc;
+	  border-radius: 50%;
+	  left: 0.2vw;
+	  top: -1.1vw;
+	  box-sizing: border-box;
+	  transition: all 300ms ease-in-out;
+	}
+	label input[type="radio"]:checked ~ span:before {
+	  border: 0.3vw solid #0C9291;
 	}
 }
+.section_calendar__select-month{
+    width: 10vw;
+	height: 2vw;
+	background-color:#fff;
+	color: #6D6D77;
+	border: none;
+	font-size: 1vw;
+	border-radius: 3px;
+	padding: 0.2vw 0.5vw;
+}
+.section_calendar__radio{
+	font-size: 1vw;
+	&:hover{
+		color:#F47E14;
+		cursor: pointer;
+	}
+}
+.section_calendar__button_change{
+	margin-left: 1vw;
+	color: #fff;
+	font-size: 1vw;
+	background-color:#0C9291;
+	width: 10vw;
+	height: 2vw;
+}
+.section_calendar__table{
+	table{
+		width: 100%;
+		font-size: 1vw;
+		padding: 0;
+		border-collapse:collapse;
+	}
+	tr{
+		padding: 0;
+	}
+	th{
+		padding-bottom: 1vw;
+	}
+	td{
+		cursor: pointer;
+		transition: 0.5s;
+		width: calc(100%/7);
+		height: 5vw;
+		//border: 1px solid #000;
 
-.calendar__ceil_gray{
-	color: #ccc;
+		color: #0C9291;
+		font-size: 3vw;
+		&:hover{
+			background-color:#0C9291;
+			color: #fff;
+		}
+	}
+	.calendar__ceil_gray{
+		color: #ccc;
+		&:hover{
+			background-color:#ccc;
+			color: #ccc;
+		}
+	}
+}
+.section_calendar__create_schedule{	
+	margin: 2vw 0 0 0;
+	color: #fff;
+	font-size: 1.5vw;
+	background-color:#0C9291;
+	width: 25vw;
+	height: 3vw;
 }
 
-.displayHide{
-	display: none;
-}
