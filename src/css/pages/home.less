@@ -69,6 +69,8 @@ body{
 	background-color:#01ABAA;
 	color:#fff;
 	text-align: center;
+	position:relative;
+	height: 100%;
 }
 .list-workers{
 	text-align: left;
@@ -146,7 +148,19 @@ body{
 	padding: 5px 30px;
 	color: #000;
 	border-radius: 3px;
+    position: relative;
 }
+.list-positions::before, .list-positions::after {
+    content: ''; 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
+    bottom: -1.4vw;
+    border: 1vw solid transparent;
+    border-top: 1vw solid #fff;
+}
+
+
 .staff__input_edit{
 	width: 20vw;
 	height: 1.5vw;
@@ -245,12 +259,34 @@ body{
 		width: calc(100%/7);
 		height: 5vw;
 		//border: 1px solid #000;
-
+		position:relative;
 		color: #0C9291;
 		font-size: 3vw;
 		&:hover{
 			background-color:#0C9291;
 			color: #fff;
+		}
+		img{
+			cursor: pointer;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 2vw;
+			height: 2vw;
+			font-size: 0.5vw;
+		}
+		.schedule-list__digit{
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-radius: 0px;
+			width: 0.8vw;
+			height: 0.8vw;
+			font-size: 0.8vw;
+			padding: 0.1vw 0.1vw ;
+			color: #fff;
+			background-color:#F47E14;
+			border: 1px solid #0C9291;
 		}
 	}
 	.calendar__ceil_gray{
@@ -269,4 +305,46 @@ body{
 	width: 25vw;
 	height: 3vw;
 }
-
+.section_calendar__schedule-list{
+	position:fixed;
+	z-index: 9999;
+	width: 9.7vw;
+	height: 7vw;
+	background-color: #fff;
+	border-radius: 3px;
+	line-height: 0;
+	text-align: center;
+	img{
+		cursor: pointer;
+		width: 2vw;
+		height: 2vw;
+		font-size: 0.5vw;
+	}
+}
+.section_calendar__schedule-list::before, .section_calendar__schedule-list::after {
+    content: ''; 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
+    bottom: -1.4vw;
+    border: 1vw solid transparent;
+    border-top: 1vw solid #fff;
+}
+.schedule-list__digit{
+	border-radius: 3px;
+	width: 1vw;
+	height: 1vw;
+	font-size: 0.8vw;
+	line-height: 0.8vw;
+	padding: 0.3vw 0.3vw;
+	margin: 0vw;
+	display: inline-block;
+	color: #fff;
+	background-color:#F47E14;
+	margin: 0.2vw;
+	border: 1px solid #F47E14;
+	&:hover{
+		background-color:#fff;
+		color: #F47E14;
+	}
+}

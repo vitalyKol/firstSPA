@@ -1,3 +1,4 @@
+
 class Calendar{
 	constructor(placeCalendar, dateInfo, buttonInfo){
 		this._placeCalendar = placeCalendar;
@@ -7,7 +8,18 @@ class Calendar{
 		this._buttonInfo.addEventListener('click',this.getInfoDate.bind(this, this._dateInfo));
 		this.createMonth(this._placeCalendar);
 		this.createYears(this._dateInfo);
+
+		this.listPositions = new CellPositions();
 	}
+
+	calendarManager(){
+		let elem = event.target.closest('td');
+		if(elem.classList.contains('calendar__ceil_gray')){
+			return false;
+		}
+		this.listPositions.showHideList(elem);
+	}
+
 	createMonth(placeCalendar, year, month){
 		let startDate = new Date();
 		year = year || startDate.getFullYear();
@@ -29,6 +41,7 @@ class Calendar{
 
 		table.innerHTML = '<tr><th>Понедельник</th><th>Вторник</th><th>Среда</th><th>Четверг</th><th>Пятница</th><th>Суббота</th><th>Воскресение</th></tr>';
 		table.setAttribute('id', 'js-calendar__table-month');
+		table.addEventListener('click', this.calendarManager.bind(this));
 
 		for(let i = 0; i < countRow; i++){
 			let tr = document.createElement('tr');

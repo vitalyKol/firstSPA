@@ -4,7 +4,7 @@
 //= DropTarget.js
 //= DragManager.js
 //= Workers.js
-
+//= CellPositions.js
 //= Calendar.js
 
 
@@ -24,4 +24,5 @@ let buttonMonthTitle = document.getElementById('js-calendar__submit-title');
 let calendar = new Calendar(placeCalendar, monthTitle, buttonMonthTitle);
 
 
-localStorage.clear();
+//localStorage.clear();
+console.log(localStorage);

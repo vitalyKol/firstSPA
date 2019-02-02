@@ -7,6 +7,7 @@ class Workers{
 		
 		//work with localStorage JSON
 		this.readStorage(); 
+
 	}
  	
 	workerControl(event){ //tracks all clicks
@@ -26,6 +27,11 @@ class Workers{
 	}
 
 	addWorker(){ //add new worker(element li in ol)
+		let countWorker = localStorage.getItem('countWorkers');
+		if(countWorker === null) countWorker = 0;
+		console.log(countWorker);
+		if(countWorker >= 8) return false;
+
 		let li = document.createElement('li');
 		let span = document.createElement('span');
 		let butEdit = document.createElement('button');
@@ -49,11 +55,15 @@ class Workers{
 
 		
 		//work with localStorage JSON
+		countWorker++;
+		console.log(countWorker);
+		localStorage.setItem('countWorkers', countWorker);
+
 		this.idWorkers++;
 		li.dataset.idKey = this.idWorkers;
 		
 		sectionStaff.appendChild(li);
-
+		
 		this.workersObj[this.idWorkers] = li.outerHTML;
 		let json = JSON.stringify(this.workersObj);
 		localStorage.setItem('workersObj', json);
@@ -175,6 +185,10 @@ console.log(this.workersObj);
 			elem.parentNode.parentNode.removeChild(elem.parentNode);
 
 			//work with localStorage JSON
+			let countWorker = localStorage.getItem('countWorkers');
+			countWorker--;
+			localStorage.setItem('countWorkers', countWorker);
+
 			let idKey = elem.parentNode.dataset.idKey;
 			var json = localStorage.getItem('workersObj');
 			this.workersObj = JSON.parse(json);
@@ -298,6 +312,8 @@ console.log(this.workersObj);
 								top:0;\
 								left:0;';
 		document.body.appendChild(cover);
+		document.body.style.overflow = 'hidden';
+		cover.style.top = document.documentElement.scrollTop + 'px';
 
 		let li = elem.closest('li');
 		let listPositions = li.querySelector('.list-positions');
@@ -311,14 +327,12 @@ console.log(this.workersObj);
 		cover.addEventListener('click', function(){
 			listPositions.classList.add('displayHide');
 			document.body.removeChild(cover);
+			document.body.style.overflow = '';
 		});
 
 		//setting new coordinates over an element li
 		let coordsButton = getCoords(li);
-		console.log(coordsButton.top);
-		console.log(elem.offsetHeight);
-		console.log(event.clientY);
-		listPositions.style.top = coordsButton.top - elem.offsetHeight + 'px';
+		listPositions.style.top = coordsButton.top - elem.offsetHeight - document.documentElement.scrollTop - 10 + 'px';
 		listPositions.style.left = coordsButton.left + 'px';
 		listPositions.style.position = 'fixed';
 		listPositions.style.zIndex = 9999;
