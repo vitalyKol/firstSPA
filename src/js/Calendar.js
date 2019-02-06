@@ -59,7 +59,19 @@ class Calendar{
 				} else{
 					if(countDays <= lastDate){
 						td.innerHTML = countDays;
+						
 						countDays++;
+						if(j === 1){
+							let schedule = document.createElement('img');
+							schedule.setAttribute('src','/i/calenadr-icon-schedule.png');
+							schedule.setAttribute('title','schedule');
+							td.appendChild(schedule);
+						}else if(j === 2 || j === 5){
+							let car = document.createElement('img');
+							car.setAttribute('src','/i/calenadr-icon-car.png');
+							car.setAttribute('title','car');
+							td.appendChild(car);
+						}
 					}
 				}
 				tr.appendChild(td);

@@ -43,13 +43,16 @@ DropTarget.prototype.onDragMove = function(avatar, event) {
 
 
 DropTarget.prototype.onDragEnd = function(avatar, event) {
+	
 	this._hideHoverIndication(avatar);
 	avatar.onDraEnd();
 	let info = avatar.getDragInfo();
-
+    
+    if(this._targetElem == null)return false;
+	
 	let ol = this._targetElem.parentNode;
 	ol.insertBefore(info.dragZoneElem.parentNode, this._targetElem);
-	this._targetElem = null;
+	//this._targetElem = null;
 
 	//work with localStorage JSON
 	let workersObj = {};

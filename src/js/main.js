@@ -6,7 +6,7 @@
 //= Workers.js
 //= CellPositions.js
 //= Calendar.js
-
+//= Schedule.js
 
 document.onselectstart = function(){return false;};
 
@@ -23,6 +23,17 @@ let monthTitle = document.getElementById('js-calendar__month-title');
 let buttonMonthTitle = document.getElementById('js-calendar__submit-title');
 let calendar = new Calendar(placeCalendar, monthTitle, buttonMonthTitle);
 
+
+let buttonSchedule = document.getElementById('js-calendar__create_schedule');
+buttonSchedule.addEventListener('click', createTables);
+
+
+function resizeLeftSection(){
+	let sectionStaff = document.getElementById('js-staff');
+	sectionStaff.style.height = 41 + 'vw';
+}
+resizeLeftSection();
+document.body.onresize = resizeLeftSection;
 
 //localStorage.clear();
 console.log(localStorage);

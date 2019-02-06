@@ -29,7 +29,6 @@ class Workers{
 	addWorker(){ //add new worker(element li in ol)
 		let countWorker = localStorage.getItem('countWorkers');
 		if(countWorker === null) countWorker = 0;
-		console.log(countWorker);
 		if(countWorker >= 8) return false;
 
 		let li = document.createElement('li');
@@ -56,7 +55,6 @@ class Workers{
 		
 		//work with localStorage JSON
 		countWorker++;
-		console.log(countWorker);
 		localStorage.setItem('countWorkers', countWorker);
 
 		this.idWorkers++;
