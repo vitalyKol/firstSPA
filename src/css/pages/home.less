@@ -56,17 +56,17 @@ body{
 	cursor: pointer;
 	border-radius: 3px;
 	&:hover{
-		background-color:#F47E14;
+		background-color:@second_extra;
 	}
 	&:focus{
-		box-shadow: 0px 0px 2px 2px #F47E14;
+		box-shadow: 0px 0px 2px 2px @second_extra;
 	}
 }
 
 //section staff
 //==================================
 .section_staff{
-	background-color:#01ABAA;
+	background-color:@first_extra;
 	color:#fff;
 	text-align: center;
 	position:relative;
@@ -164,7 +164,7 @@ body{
 .staff__input_edit{
 	width: 20vw;
 	height: 1.5vw;
-	background-color:#0C9291;
+	background-color:@first_extra;
 	color: #fff;
 	border: none;
 	border-radius: 3px;
@@ -184,6 +184,7 @@ body{
 //section calendar
 //==================================
 .section_calendar{
+	//padding-left:1vw;
 	flex-grow: 2;
 	text-align: center;
 }
@@ -212,7 +213,7 @@ body{
 	  transition: all 300ms ease-in-out;
 	}
 	label input[type="radio"]:checked ~ span:before {
-	  border: 0.3vw solid #0C9291;
+	  border: 0.3vw solid @first_extra;
 	}
 }
 .section_calendar__select-month{
@@ -228,7 +229,7 @@ body{
 .section_calendar__radio{
 	font-size: 1vw;
 	&:hover{
-		color:#F47E14;
+		color:@second_extra;
 		cursor: pointer;
 	}
 }
@@ -236,7 +237,7 @@ body{
 	margin-left: 1vw;
 	color: #fff;
 	font-size: 1vw;
-	background-color:#0C9291;
+	background-color:@first_extra;
 	width: 10vw;
 	height: 2vw;
 }
@@ -260,10 +261,10 @@ body{
 		height: 5vw;
 		//border: 1px solid #000;
 		position:relative;
-		color: #0C9291;
+		color: @first_extra;
 		font-size: 3vw;
 		&:hover{
-			background-color:#0C9291;
+			background-color:@first_extra;
 			color: #fff;
 		}
 		img{
@@ -285,8 +286,8 @@ body{
 			font-size: 0.8vw;
 			padding: 0.1vw 0.1vw ;
 			color: #fff;
-			background-color:#F47E14;
-			border: 1px solid #0C9291;
+			background-color:@second_extra;
+			border: 1px solid @first_extra;
 		}
 	}
 	.calendar__ceil_gray{
@@ -301,7 +302,7 @@ body{
 	margin: 2vw 0 0 0;
 	color: #fff;
 	font-size: 1.5vw;
-	background-color:#0C9291;
+	background-color:@first_extra;
 	width: 25vw;
 	height: 3vw;
 }
@@ -340,31 +341,40 @@ body{
 	margin: 0vw;
 	display: inline-block;
 	color: #fff;
-	background-color:#F47E14;
+	background-color:@second_extra;
 	margin: 0.2vw;
-	border: 1px solid #F47E14;
+	border: 1px solid @second_extra;
 	&:hover{
 		background-color:#fff;
-		color: #F47E14;
+		color: @second_extra;
 	}
 }
 
 .table-result{
 	position: absolute;
 	top: 45vw;
-	margin-top: 0vw;
+	margin: 0vw;
 	text-align: center;
-	width: 98vw;
+	width: 100%;
 	font-size: 1vw;
 	border-collapse:collapse;
 	
-
+	td{
+		padding:1vw;
+	}
 	tr:nth-child(odd){
-		background-color: #0C9291;
+		background-color: @first_extra;
 		color: #fff;
 	}
-}
-.table-result__trHead{
-	padding: 5vw;
-	background-color: none;
+	.table-result__trHead th{
+		padding: 2vw;
+		background-color: #E2E2E2;
+		color: @first_extra;
+		font-size: 2vw;
+	}
+	.table-result__trTitle th{
+		padding: 1vw;
+		background-color: #E2E2E2;
+		color: @first_extra;
+	}
 }

@@ -120,5 +120,14 @@ class Calendar{
 			listLabel[i].appendChild(document.createTextNode(year+j));
 			listInput[i].value = year+j;
 		}
+
+		//define the month and highlight it in the list
+		let listMonth = document.getElementById('js-calendar__list-month');
+		let month = date.getMonth();
+		for(let i = 0; i < listMonth.children.length; i++){
+			if(listMonth.children[i].value == month){
+				listMonth.children[i].selected = true;
+			}
+		}
 	}
 }

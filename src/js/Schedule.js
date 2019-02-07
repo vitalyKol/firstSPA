@@ -155,13 +155,13 @@ function createTables(){
 	table.classList.add('table-result');
 	let maxWeek = Math.floor(Object.keys(scheduleObj).length/7);
 	let maxWorkers = Math.floor(Object.keys(infoObjWorkers).length);
-	console.log(maxWeek);
 	for(let i = 1; i <= maxWeek; i++){
 		let trHead = document.createElement('tr');
 		trHead.innerHTML = '<th colspan="8">Неделя: '+i+'</th>';
 		trHead.classList.add('table-result__trHead');
 		//adds dates
 		let trTitle = document.createElement('tr');
+		trTitle.classList.add('table-result__trTitle');
 		trTitle.innerHTML = '<th>ФИО</th><th>Понедельник: '+ infoObjMonth[''+i+0]['date'] 
 								  +'</th><th>Вторник: '+ infoObjMonth[''+i+1]['date'] 
 								  +'</th><th>Среда: '+ infoObjMonth[''+i+2]['date'] 
@@ -202,6 +202,24 @@ function createTables(){
 			table.appendChild(tr);
 		}
 	}
-	console.log(scheduleObj);
 	document.body.appendChild(table);
+
+	let tabElem = document.getElementById('js-table-result');
+	let tabPos = getCoords(tabElem);
+
+	let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	    console.log(scrollTop);
+	    let scroller = setInterval(function() {
+	      let scrollBy = 5;
+	      if(scrollTop < tabPos.top){
+	      	window.scrollBy(0, scrollBy);
+	      	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	      }else {
+	        window.scrollTo(0, tabPos.top);
+	        clearInterval(scroller);
+	      }
+
+	    }, 1);
 }
+
+
