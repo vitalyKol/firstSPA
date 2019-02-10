@@ -67,10 +67,10 @@ class Workers{
 		localStorage.setItem('workersObj', json);
 		localStorage.setItem('idWorkers', this.idWorkers);
 
-console.log('Add')
-json = localStorage.getItem('workersObj');
-this.workersObj = JSON.parse(json);
-console.log(this.workersObj);	
+// console.log('Add')
+// json = localStorage.getItem('workersObj');
+// this.workersObj = JSON.parse(json);
+// console.log(this.workersObj);	
 	}
 
 	editWorker(elem, self){//edit title(span) in worker(li)
@@ -171,10 +171,10 @@ console.log(this.workersObj);
 		// var json = JSON.stringify(this.workersObj);
 		// localStorage.setItem('workersObj', json);
 
-console.log('EDIT')
-json = localStorage.getItem('workersObj');
-this.workersObj = JSON.parse(json);
-console.log(this.workersObj);		
+// console.log('EDIT')
+// json = localStorage.getItem('workersObj');
+// this.workersObj = JSON.parse(json);
+// console.log(this.workersObj);		
 	}
 
 	deleteWorker(elem){ //removes the li element and the worker from the localStorage
@@ -190,16 +190,15 @@ console.log(this.workersObj);
 			let idKey = elem.parentNode.dataset.idKey;
 			var json = localStorage.getItem('workersObj');
 			this.workersObj = JSON.parse(json);
-console.log(this.workersObj);
-console.log(idKey);		
+
 			console.log(delete this.workersObj[idKey]);
 			json = JSON.stringify(this.workersObj);
 			localStorage.setItem('workersObj', json);
 
-console.log('DEL')
-json = localStorage.getItem('workersObj');
-this.workersObj = JSON.parse(json);
-console.log(this.workersObj);
+// console.log('DEL')
+// json = localStorage.getItem('workersObj');
+// this.workersObj = JSON.parse(json);
+// console.log(this.workersObj);
 		}
 	}
 
@@ -219,8 +218,8 @@ console.log(this.workersObj);
 		}
 		this.sectionStaff.innerHTML = strObj;
 
-console.log('START')
-console.log(this.workersObj);	
+// console.log('START')
+// console.log(this.workersObj);	
 	}
 
 	addPositions(place, beforeElem){ //add 'Упр.' 'Мнж.' 'Стж.' 'Мшн.' 'Рсп.' 
@@ -294,10 +293,10 @@ console.log(this.workersObj);
 		localStorage.setItem('workersObj', json);
 	    listPositions.classList.remove('displayHide');////show list
 
-console.log('EDIT');
-json = localStorage.getItem('workersObj');
-this.workersObj = JSON.parse(json);
-console.log(this.workersObj);	
+// console.log('EDIT');
+// json = localStorage.getItem('workersObj');
+// this.workersObj = JSON.parse(json);
+// console.log(this.workersObj);	
 	}
 
 	showHideList(elem){ //shows or hides the list of positions

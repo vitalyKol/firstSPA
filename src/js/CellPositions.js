@@ -1,11 +1,11 @@
 class CellPositions{
 	constructor(){
 		this.car = document.createElement('img');
-		this.car.setAttribute('src','/i/calenadr-icon-car.png');
+		this.car.setAttribute('src','i/calenadr-icon-car.png');
 		this.car.setAttribute('title','car');
 
 		this.schedule = document.createElement('img');
-		this.schedule.setAttribute('src','/i/calenadr-icon-schedule.png');
+		this.schedule.setAttribute('src','i/calenadr-icon-schedule.png');
 		this.schedule.setAttribute('title','schedule');
 
 		this.div = document.createElement('div');
@@ -85,7 +85,7 @@ class CellPositions{
 		console.log(coordsButton.top);
 		console.log(elem.offsetHeight);
 		console.log(event.clientY);
-		this.div.style.top = coordsButton.top - elem.offsetHeight - document.documentElement.scrollTop - 5 + 'px';
+		this.div.style.top = coordsButton.top - elem.offsetHeight - document.documentElement.scrollTop - 25 + 'px';
 		this.div.style.left = coordsButton.left + 'px';
 
 		this.div.classList.remove('displayHide');

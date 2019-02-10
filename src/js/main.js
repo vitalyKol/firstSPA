@@ -36,4 +36,3 @@ resizeLeftSection();
 document.body.onresize = resizeLeftSection;
 
 //localStorage.clear();
-console.log(localStorage);

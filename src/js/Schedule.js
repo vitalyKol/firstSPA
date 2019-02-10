@@ -16,7 +16,6 @@ function getInfoWorkers(){ //gets a list of employees and their positions
 			j++; 
 		}
  	}
- 	console.log(infoObjWorkers);
 }
 
 function getInfoMonth(){ //get a list of all dates and events in the month
@@ -37,7 +36,6 @@ function getInfoMonth(){ //get a list of all dates and events in the month
 			}
 		}
  	}
- 	console.log(infoObjMonth);
 }
 
 function createScheduleObj(){
@@ -82,7 +80,7 @@ function createScheduleObj(){
 				}
 			}
 			//the addition of output
-			for(let i = 1; i < 9; i++){
+			for(let i = 1; i <= arrWorker.length; i++){
 				if((i+'') in infoObjMonth[day]){
 					offWorkers.push(arrWorkerOff[i-1]);
 				}
@@ -93,39 +91,41 @@ function createScheduleObj(){
 			let workDay = [];
 			let sum = 0;
 			while(sum < 2){
-                let flag = true;
-                //skip the average weekend
-                offWorkers.forEach((e)=>{
-                	if(e[0] === arrWorker[i][0]) flag = false;
-                });
-                //skip the average
-                middleWorkers.forEach((e)=>{
-                	if(e[0] === arrWorker[i][0]) flag = false;
-                });
-                //skip already added
-                workDay.forEach((e)=>{
-                	if(e === arrWorker[i][1]) flag = false;
-                });
-                if(flag){
-                	workDay.push(arrWorker[i][1]);
-					let worker = arrWorker.splice(i,1);
-					arrWorker.push(worker[0]);
-					sum++;
-                }else{
-                	if(i>8){ //allow adding people with average shifts
-                		if(middleWorkers.length){
-	                		let worker = middleWorkers.pop();
-	                		workDay.unshifht(worker[i][1]);
-	                		sum++;
-                		}else{
-                			workDay.push('Пусто');
-                			sum++;
-                		}
-                	}else{
-                		i++;
-                	}
-                }
-				
+				if(i>=arrWorker.length){ //allow adding people with average shifts
+            		if(middleWorkers.length){
+            			debugger;
+                		let worker = middleWorkers.pop();
+                		workDay.unshift(worker[1]);
+                		sum++;
+            		}else{
+            			workDay.push('Пусто');
+            			sum++;
+            		}
+            	}else{
+	                let flag = true;
+	                //skip the average weekend
+
+	                offWorkers.forEach((e)=>{
+	                	if(e[0] === arrWorker[i][0]) flag = false;
+	                });
+	                //skip the average
+	                middleWorkers.forEach((e)=>{
+	                	if(e[0] === arrWorker[i][0]) flag = false;
+	                });
+	                //skip already added
+	                workDay.forEach((e)=>{
+	                	if(e === arrWorker[i][1]) flag = false;
+	                });
+	              
+	                if(flag){
+	                	workDay.push(arrWorker[i][1]);
+						let worker = arrWorker.splice(i,1);
+						arrWorker.push(worker[0]);
+						sum++;
+	                }else{
+	                		i++;
+	                }
+				}
 			}
 			//add middle shifts as additional
 			if(middleWorkers.length){
@@ -150,6 +150,7 @@ function createTables(){
 	
 	//create table
 	let scheduleObj = createScheduleObj();
+console.log(scheduleObj);
 	let table = document.createElement('table');
 	table.setAttribute('id','js-table-result');
 	table.classList.add('table-result');
@@ -202,13 +203,22 @@ function createTables(){
 			table.appendChild(tr);
 		}
 	}
+	let lastDiv = findWholeDays(scheduleObj);
+	if(lastDiv){
+		let trHead = document.createElement('tr');
+		trHead.innerHTML = '<th colspan="8">Не заполненные дни!</th>';
+		trHead.classList.add('table-result__trHead');
+		let trDiv = document.createElement('tr');
+		trDiv.innerHTML = '<th colspan="8">' + lastDiv.innerHTML + '</th>';
+		table.appendChild(trHead);
+		table.appendChild(trDiv);
+	}	
 	document.body.appendChild(table);
 
 	let tabElem = document.getElementById('js-table-result');
 	let tabPos = getCoords(tabElem);
 
 	let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	    console.log(scrollTop);
 	    let scroller = setInterval(function() {
 	      let scrollBy = 5;
 	      if(scrollTop < tabPos.top){
@@ -220,6 +230,23 @@ function createTables(){
 	      }
 
 	    }, 1);
+
+	  
+	console.log(132654);
 }
 
-
+function findWholeDays(scheduleObj){
+	let div = document.createElement('div');
+	let daysOfWeek = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресение'];
+	for(let key in scheduleObj){
+		if(scheduleObj[key] == 'x') continue;
+		if(~scheduleObj[key].indexOf('Пусто')){
+			let span = document.createElement('span');
+			span.innerHTML = 'Неделя: '+ key[0] + ', день: ' + daysOfWeek[key[1]] + '<br>'; 
+			div.appendChild(span);
+		}
+		
+	}
+	if(div.children.length)	return div;
+	return false;
+}
